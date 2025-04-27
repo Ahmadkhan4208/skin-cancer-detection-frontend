@@ -1,0 +1,39 @@
+<div class="app-container">
+  <header>
+    <h1>Skin Cancer Detection</h1>
+    <div class="auth-actions" *ngIf="isAuthenticated$ | async">
+      
+      <!-- Profile Button (Always visible when authenticated) -->
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu" class="profile-button">
+        <mat-icon class="user-icon">account_circle</mat-icon>
+      </button>
+      
+      <mat-menu #profileMenu="matMenu">
+        <div class="profile-header">
+          <mat-icon>account_circle</mat-icon>
+          <div class="profile-info">
+            <div class="username">{{ getUsername(userEmail$ | async) }}</div>
+            <div class="user-role">{{ userRole$ | async | titlecase }}</div>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="openProfile()">
+          <mat-icon>edit</mat-icon>
+          Update Profile
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <p>For educational purposes only. Consult a healthcare professional for medical advice.</p>
+  </footer>
+</div>

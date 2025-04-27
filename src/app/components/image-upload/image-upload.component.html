@@ -1,0 +1,40 @@
+<div class="upload-container">
+  <!-- Only show upload card when NOT showing results -->
+  <div class="loading-overlay" *ngIf="isLoading">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p class="loading-text">Analyzing your image...</p>
+  </div>
+  <div class="upload-card" *ngIf="!showResults">
+    <h2>Skin Cancer Detection</h2>
+    <p class="subtitle">Upload an image of your skin lesion for analysis</p>
+    
+    <div class="upload-area" 
+         (click)="fileInput.click()" 
+         [class.drag-over]="isDragging">
+      <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" hidden>
+      <div class="icon-container" *ngIf="!selectedFile">
+        <mat-icon class="upload-icon">cloud_upload</mat-icon>
+      </div>
+      <p *ngIf="!selectedFile">Drag & drop your image here or click to browse</p>
+      <div *ngIf="selectedFile" class="preview-container">
+        <img [src]="imagePreview" alt="Preview" class="image-preview">
+        <button mat-icon-button class="remove-btn" (click)="removeImage($event)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="actions" *ngIf="selectedFile && !isLoading">
+      <button mat-raised-button color="primary" (click)="analyze()">
+        Analyze Image
+      </button>
+    </div>
+  </div>
+
+  <!-- Show results card when results are available -->
+  <app-results-display 
+    *ngIf="showResults"
+    [results]="analysisResults"
+    (newUpload)="resetUpload()">
+  </app-results-display>
+</div>

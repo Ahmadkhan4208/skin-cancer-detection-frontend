@@ -1,0 +1,49 @@
+/* booking-modal.component.css */
+
+h2[mat-dialog-title] {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+  color: #333;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.elevated-field {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+textarea[matInput] {
+  min-height: 100px;
+  resize: vertical;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 0 10px 10px 10px;
+}
+
+button[mat-button] {
+  font-weight: 500;
+  color: #1976d2;
+}
+
+button[mat-button]:hover {
+  background-color: rgba(25, 118, 210, 0.1);
+  border-radius: 4px;
+}
